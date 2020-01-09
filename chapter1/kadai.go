@@ -1,5 +1,8 @@
 package chapter1
 
+import "fmt"
+import "./lib/"
+
 // Calc opには+,-,×,÷の4つが渡ってくることを想定してxとyについて計算して返却(正常時はerrorはnilでよい)
 // 想定していないopが渡って来た時には0とerrorを返却
 func Calc(op string, x, y int) (int, error) {
@@ -10,7 +13,32 @@ func Calc(op string, x, y int) (int, error) {
 
 	// TODO Q1
 
-	return 0, nil
+	//switch op {
+	//case "+":
+	//    return 6, nil
+	//case "-":
+	//    return 2, nil
+	//case "×":
+	//    return 10, nil
+	//case "÷":
+	//    return 2, nil
+	//default:
+	//    return 0, fmt.Errorf("Invalid op=%s", op)
+	//}
+
+	switch op {
+	case "+":
+		return x + y, nil
+	case "-":
+		return x - y, nil
+	case "×":
+		return x * y, nil
+	case "÷":
+		return x / y, nil
+	default:
+		return 0, fmt.Errorf("Invalid op=%s", op)
+	}
+
 }
 
 // StringEncode 引数strの長さが5以下の時キャメルケースにして返却、それ以外であればスネークケースにして返却
@@ -19,8 +47,11 @@ func StringEncode(str string) string {
 	// chapter1/libのToCamelとToSnakeを使うこと
 
 	// TODO Q2
-
-	return ""
+	if l := len(str); l <= 5 {
+		return string.ToCamel(str)
+	} else {
+		return string.ToSnake(str)
+	}
 }
 
 // Sqrt 数値xが与えられたときにz²が最もxに近い数値zを返却
