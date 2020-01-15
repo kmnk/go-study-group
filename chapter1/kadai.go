@@ -62,7 +62,7 @@ func StringEncode(str string) string {
 	//}
 	//return ""
 
-	if l := len(str); l <= 5 {
+	if len(str) <= 5 {
 		return lib.ToCamel(str)
 	}
 	return lib.ToSnake(str)
@@ -125,14 +125,14 @@ func StringSum(x, y string) (int, error) {
 	//}
 	//return 0, fmt.Errorf("Invalid =%s", x)
 
-	a, err1 := strconv.Atoi(x)
-	if err1 != nil {
-		return 0, err1
+	a, err := strconv.Atoi(x)
+	if err != nil {
+		return 0, err
 	}
 
-	b, err2 := strconv.Atoi(y)
-	if err2 != nil {
-		return 0, err2
+	b, err := strconv.Atoi(y)
+	if err != nil {
+		return 0, err
 	}
 
 	return a + b, nil
@@ -156,14 +156,14 @@ func SumFromFileNumber(filePath string) (int, error) {
 
 	sc := bufio.NewScanner(file)
 	for sc.Scan() {
-		if err := sc.Err(); err != nil {
-			return 0, err
-		}
 		v, err := strconv.Atoi(sc.Text())
 		if err != nil {
 			return 0, err
 		}
 		sum += v
+	}
+	if err := sc.Err(); err != nil {
+		return 0, err
 	}
 
 	return sum, nil
