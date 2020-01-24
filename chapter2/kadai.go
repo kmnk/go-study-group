@@ -13,11 +13,13 @@ func Calc(slice []int) (int, error) {
 	// fmt.Errorf(“invalid op=%s”, op) などでエラー内容を返却するのがよい
 	// https://golang.org/pkg/fmt/#Errorf
 
-	if len(slice) == 0 {
+	l := len(slice)
+
+	if l == 0 {
 		return 0, fmt.Errorf("invalid length:%d", len(slice))
 	}
+
 	a := slice[0]
-	l := len(slice)
 	for _, v := range slice[1:] {
 		if l <= 2 {
 			a *= v
