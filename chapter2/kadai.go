@@ -17,8 +17,9 @@ func Calc(slice []int) (int, error) {
 		return 0, fmt.Errorf("invalid length:%d", len(slice))
 	}
 	a := slice[0]
+	l := len(slice)
 	for _, v := range slice[1:] {
-		if len(slice) <= 2 {
+		if l <= 2 {
 			a *= v
 		} else {
 			a += v
@@ -37,9 +38,9 @@ func Numbers() []Number {
 	// TODO Q2
 
 	n := []Number{}
-	n = append(n, Number{index: 1})
-	n = append(n, Number{index: 2})
-	n = append(n, Number{index: 3})
+	for i := 1; i <= 3; i++ {
+		n = append(n, Number{index: i})
+	}
 	return n
 }
 
