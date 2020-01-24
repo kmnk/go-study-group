@@ -15,19 +15,16 @@ func Calc(slice []int) (int, error) {
 
 	if len(slice) == 0 {
 		return 0, fmt.Errorf("invalid length:%d", len(slice))
-	} else if len(slice) <= 2 {
-		a := slice[0]
-		for _, v := range slice[1:] {
+	}
+	a := slice[0]
+	for _, v := range slice[1:] {
+		if len(slice) <= 2 {
 			a *= v
-		}
-		return a, nil
-	} else {
-		a := slice[0]
-		for _, v := range slice[1:] {
+		} else {
 			a += v
 		}
-		return a, nil
 	}
+	return a, nil
 }
 
 type Number struct {
