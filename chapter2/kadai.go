@@ -39,7 +39,7 @@ type Number struct {
 func Numbers() []Number {
 	// TODO Q2
 
-	n := []Number{}
+	n := make([]Number, 0, 3)
 	for i := 1; i <= 3; i++ {
 		n = append(n, Number{index: i})
 	}
@@ -70,8 +70,7 @@ func Add(models []Model) {
 	// TODO  Q4
 
 	for i := range models {
-		v := &models[i]
-		v.Value += 5
+		models[i].Value += 5
 	}
 }
 
@@ -81,15 +80,17 @@ func Add(models []Model) {
 func Unique(slice []int) []int {
 	// TODO Q5
 
-	x := slice[0]
-	a := []int{x}
+	has := map[int]struct{}{}
+	a := []int{}
 	for _, v := range slice {
-		if x == v {
+		_, ok := has[v]
+		if ok {
 			continue
 		}
 		a = append(a, v)
-		x = v
+		has[v] = struct{}{}
 	}
+
 	return a
 }
 
