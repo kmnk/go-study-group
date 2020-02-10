@@ -39,6 +39,6 @@ type Face struct {
 }
 
 func (f *Face) Breathe() {
-	f.Nose.isOpen = true
-	f.Mouth.isOpen = true
+	f.Nose.Breathe()
+	f.Mouth.Breathe()
 }
